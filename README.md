@@ -1,2 +1,2 @@
 # FineChart
-d3.js for saiku-ui
+d3.js for saiku-ui(FineChart)
