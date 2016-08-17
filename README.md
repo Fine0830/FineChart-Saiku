@@ -10,6 +10,7 @@ Introduce the method
 ![image](https://github.com/Fine0830/FineChart/blob/master/imgs/file.png)
 
 2、Modify index.html
+
 Add the corresponding scripts
 
 ```
