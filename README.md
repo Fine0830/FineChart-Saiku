@@ -5,6 +5,8 @@ d3.js visualize data for saiku-ui
 Introduce the method
 
 1、Scripts to the appropriate files
+
+
 ![image](https://github.com/Fine0830/FineChart/blob/master/imgs/file.png)
 
 2、Modify index.html
