@@ -185,12 +185,15 @@ SaikuChartRenderer.prototype.switch_chart = function (key, override) {
             seriesInRows: false
         }
     };
-	var d3ChartsOptions ={
+	var FineChartOptions ={
 		"bubble": {
 			type: "BubbleChart"
 		},
 		"scattermap":{
 			type: "ScatterChart"
+		},
+		"wordcloud":{
+			type: "WordCloud"
 		}
 	};
     if (key === null || key === '') {
@@ -204,18 +207,18 @@ SaikuChartRenderer.prototype.switch_chart = function (key, override) {
      this.render();
      }
 	} else if (keyOptions.hasOwnProperty(key)) {
-        $(this.el).find('.zoombuttons a').hide();
-        this.type = key;
-        var o = keyOptions[key];
-        this.cccOptions = this.getQuickOptions(o);
-        this.define_chart();
-        if (this.hasProcessed) {
-            this.render();
-        }
-    }else if(d3ChartsOptions.hasOwnProperty(key)){
 		$(this.el).find('.zoombuttons a').hide();
 		this.type = key;
-		var o = d3ChartsOptions[key];
+		var o = keyOptions[key];
+		this.cccOptions = this.getQuickOptions(o);
+		this.define_chart();
+		if (this.hasProcessed) {
+			this.render();
+		}
+	}else if(FineChartOptions.hasOwnProperty(key)){
+		$(this.el).find('.zoombuttons a').hide();
+		this.type = key;
+		var o = FineChartOptions[key];
 		this.cccOptions = this.getQuickOptions(o);
 		this.FineChartsVis(o);
 		if (this.hasProcessed) {
@@ -324,9 +327,6 @@ SaikuChartRenderer.prototype.getQuickOptions = function (baseOptions) {
 
     if (this.adjustSizeTo) {
         var al = $(this.adjustSizeTo);
-//al.appendTo(document.body);
-//var width = al.width();
-//al.remove();
         if (al && al.length > 0) {
             var runtimeWidth = al.width() - 40;
             var runtimeHeight = al.height() - 40;
@@ -546,7 +546,7 @@ SaikuChartRenderer.prototype.render_chart_element = function (context) {
 		if (animate) {
 			$(self.el).find('.canvas_wrapper').show();
 		}
-		if(self.library == "d3_chart"){
+		if(self.library == "d3_chart"||self.library == "gis_chart"){
 			$('#' + 'canvas_' + self.id).find('svg:not(:last-child)').remove();
 		}else if(self.library == "pv_chart"){
 			self.chart.render();
@@ -851,9 +851,8 @@ SaikuChartRenderer.prototype.sunburst = function (o) {
 
 SaikuChartRenderer.prototype.FineChartsVis = function(o){
 	this.library = "d3_chart";
-	var options = this.getQuickOptions(o);
 	var dataObj = {
-		options:options,
+		options:this.getQuickOptions(o),
 		data:this.data,
 		headerCnt :this.valueContent
 	}
