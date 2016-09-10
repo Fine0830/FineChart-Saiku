@@ -80,3 +80,7 @@ Add  the appropriate li tags in template-query-toolbar
 
 4、 It's ok.
 
+![image](https://github.com/Fine0830/FineChart/blob/master/imgs/bubble1.png)
+
+![image](https://github.com/Fine0830/FineChart/blob/master/imgs/scatterMap1.png)
+
