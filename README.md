@@ -14,9 +14,11 @@ Introduce the method
 Add the corresponding scripts
 
 ```
-<script type="text/javascript" src="js/saiku/plugins/fineChart/d3.js"></script>
-<script type="text/javascript" src="js/saiku/plugins/fineChart/d3.tip.js"></script>
-<script type="text/javascript" src="js/saiku/plugins/fineChart/plugins.js"></script>
+<script type="text/javascript" src="js/saiku/plugins/FineChart/d3.js"></script>
+<script type="text/javascript" src="js/saiku/plugins/FineChart/d3-dispatch.js"></script>
+<script type="text/javascript" src="js/saiku/plugins/FineChart/d3-cloud.js"></script>
+<script type="text/javascript" src="js/saiku/plugins/FineChart/d3.tip.js"></script>
+<script type="text/javascript" src="js/saiku/plugins/FineChart/plugins.js"></script>
 
 ```
 Add  the appropriate li tags in template-query-toolbar
@@ -69,6 +71,9 @@ Add  the appropriate li tags in template-query-toolbar
 			<li><a href="#scattermap"
                 class="i18n bubble chartoption button disabled_toolbar"
                 title="scattermap">scattermap</a></li>
+            <li><a href="#wordcloud"
+                class="i18n wordcloud chartoption button disabled_toolbar"
+                title="wordcloud">wordcloud</a></li>
             <!--<li><a href="#chart_editor"
                 class="i18n custom_chart button disabled_toolbar"
                 title="Custom">Custom</a></li>-->
@@ -83,4 +88,6 @@ Add  the appropriate li tags in template-query-toolbar
 ![image](https://github.com/Fine0830/FineChart/blob/master/imgs/bubble1.png)
 
 ![image](https://github.com/Fine0830/FineChart/blob/master/imgs/scatterMap1.png)
+
+![image](https://github.com/Fine0830/FineChart/blob/master/imgs/iWords.png)
 
