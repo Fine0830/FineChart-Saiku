@@ -2,7 +2,6 @@
  * Created by Fine on 2016/8/4.
  */
 var fineChart = function(chartParam){
-
 	var chartType = {
 		ScatterChart:function(argsScatter){
 			d3.select('#'+argsScatter.options.canvas).selectAll("svg").remove();
@@ -12,13 +11,13 @@ var fineChart = function(chartParam){
 				.append("g")
 				.attr("transform", "translate("+argsScatter.options.width*0.3+",0)")
 			d3.selectAll(".d3-tip").remove();
-			var chinaJsonPath = "/js/saiku/plugins/fineChart/mapdata/china.json";
+			var chinaJsonPath = "/js/saiku/plugins/FineChart/mapdata/china.json";
 			var top5Info = [],
 				top5Array = [],
 				dataNodes = argsScatter.data.resultset,
 				headerCnt  = argsScatter.headerCnt,
 				lengthCol  = argsScatter.headerCnt.length, //type is DETA_CELL number
-				countryPath = "/js/saiku/plugins/fineChart/mapdata/citycoordinates.json";
+				countryPath = "/js/saiku/plugins/FineChart/mapdata/citycoordinates.json";
 			var tip = d3.behavior.tip()
 				.attr('class', 'd3-tip')
 				.offset([-10, 0]);
@@ -40,8 +39,7 @@ var fineChart = function(chartParam){
 					.attr("stroke-width", 0.3)
 					.attr("stroke-dasharray", "5,5")
 					.attr("fill", function () {
-						var overColor = "#F1F1F1";
-						return overColor;
+						return "#F1F1F1";
 					})
 					.attr("d", path)
 				var maxArray = [],
@@ -382,9 +380,80 @@ var fineChart = function(chartParam){
 				return {children: dataNodes};
 			}
 			return svg;
+		},
+		WordCloud:function(argsCloud){
+			console.log(argsCloud);
+			var dataList = argsCloud.data.resultset,
+				metaData = argsCloud.data.metadata,
+			    fill = d3.scale.category20();
+			var layout = cloud.size([argsCloud.options.width, argsCloud.options.height/1.8])
+				.words(dataList.map(function(d) {
+					var param = [],
+						tipsdata = [],
+						paramLength = 0;
+					for(var j = 0;j< d.length;j++){
+						if(d[j] && (typeof(d[j])) == "string"){
+							param.push(d[j]);
+							paramLength++;
+						}
+					}
+					for(var t=0; t<metaData.length;t++){
+						var metaParam = [];
+						metaParam.push(metaData[t].colName);
+						(metaData[t].colType=='String') ? metaParam.push(d[t]) : metaParam.push(d[t].f);
+						(d[t]) ? tipsdata.push(metaParam.join(':')) : null;
+					}
+					return {text: param[paramLength-1], size: 10 + Math.random() * 60, tipsData: tipsdata};
+					})
+			    )
+				.padding(5)
+				.rotate(function() { return ~~(Math.random() * 2) * 90; })
+				.font("Impact")
+				.fontSize(function(d) { return d.size; })
+				.on("end", draw);
+			layout.start();
+			function draw(words) {
+				d3.select('#'+argsCloud.options.canvas).selectAll("svg").remove();
+				var svg = d3.select('#'+argsCloud.options.canvas).append("svg")
+					.attr({
+						"width": layout.size()[0],
+						"height": layout.size()[1]
+					})
+					.append("g")
+					.attr("transform", "translate(" + layout.size()[0] / 2+ "," + layout.size()[1]/2+ ")")
+					.selectAll("text")
+					.data(words)
+					.enter().append("text")
+					.style("font-size", function(d) { return d.size + "px"; })
+					.style("font-family", "Impact")
+					.style("fill", function(d, i) { return fill(i); })
+					.attr("text-anchor", "middle")
+					.attr("transform", function(d) {
+						return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+					})
+					.text(function(d) { return d.text; })
+					.on("mouseover",function(d){
+						tip.html(d.tipsData.join("</br>"));
+						tip.show();
+					})
+					.on("mouseleave",function(){
+						tip.hide();
+					});
+				var tip = d3.behavior.tip()
+					.attr({'class':'d3-tip'})
+					.offset([-10, 0]);
+				svg.call(tip);
+			}
+
 		}
-		}
+	}
 	chartType[chartParam.options.type](chartParam);
+}
+
+var handleMeta = function(data){
+	for(var i = 0;i<data.length;i++){
+
+	}
 }
 //array sort function
 var compare = function (value1, value2) {
