@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="css/saiku/src/saiku.table.css" type="text/css">
     <link rel="stylesheet" href="css/saiku/src/saiku.dropzone.css" type="text/css">
 
-
+    <!--<link rel="shortcut icon" href="favicon.ico">-->
 
 </head>
 <body>
@@ -187,12 +187,19 @@
 <script type="text/javascript" src="js/saiku/plugins/filters/filterconfig.js" defer></script>
 <script type="text/javascript" src="js/saiku/plugins/filters/plugin_disabled.js" defer></script>
 -->
-
-<script type="text/javascript" src="js/saiku/plugins/fineChart/d3.js"></script>
-<script type="text/javascript" src="js/saiku/plugins/fineChart/d3.tip.js"></script>
-<script type="text/javascript" src="js/saiku/plugins/fineChart/plugins.js"></script>
-<!--<script type="text/javascript" src="js/saiku/plugins/fineChart/echarts.js"></script>-->
-<!--<script type="text/javascript" src="js/saiku/plugins/fineChart/echartsFine.js"></script>-->
+<!-- FineChart dependencies -->
+<script type="text/javascript" src="js/saiku/plugins/FineChart/d3.js"></script>
+<script type="text/javascript" src="js/saiku/plugins/FineChart/d3-dispatch.js"></script>
+<script type="text/javascript" src="js/saiku/plugins/FineChart/d3-cloud.js"></script>
+<script type="text/javascript" src="js/saiku/plugins/FineChart/d3.tip.js"></script>
+<script type="text/javascript" src="js/saiku/plugins/FineChart/plugins.js"></script>
+<!--<script type="text/javascript" src="js/saiku/plugins/FineChart/echarts.js"></script>-->
+<!--<script type="text/javascript" src="js/saiku/plugins/FineChart/echartsFine.js"></script>-->
+<!-- FineMap dependencies -->
+<!--<link rel="stylesheet" href="js/saiku/plugins/FineMap/main.css">-->
+<!--<script type="text/javascript" src="js/saiku/plugins/FineMap/init.js"></script>-->
+<!--<script src="https://js.arcgis.com/4.0/"></script>-->
+<!--<script type="text/javascript" src="js/saiku/plugins/FineMap/plugins.js"></script>-->
 <!-- CCC dependencies -->
 <script type="text/javascript" src="js/saiku/plugins/CCC_Chart/def.js"></script>
 <script type="text/javascript" src="js/saiku/plugins/CCC_Chart/protovis.js"></script>
@@ -607,8 +614,11 @@ title="Drill across on cell"></a></li>
                 class="i18n bubble chartoption button disabled_toolbar"
                 title="bubble">Bubble</a></li>
 			<li><a href="#scattermap"
-                class="i18n bubble chartoption button disabled_toolbar"
+                class="i18n scattermap chartoption button disabled_toolbar"
                 title="scattermap">scattermap</a></li>
+			<li><a href="#wordcloud"
+                class="i18n wordcloud chartoption button disabled_toolbar"
+                title="wordcloud">wordcloud</a></li>
             <!--<li><a href="#chart_editor"
                 class="i18n custom_chart button disabled_toolbar"
                 title="Custom">Custom</a></li>-->
